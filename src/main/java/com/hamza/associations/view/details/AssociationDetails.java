@@ -8,6 +8,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,24 +17,22 @@ import java.util.Arrays;
 import java.util.List;
 
 
-//@Component
-//@Scope("prototype")
+@Component
 public class AssociationDetails {
 
     @FXML
     private TableView<Floor> tableView;
-
     private final FloorService floorService;
     private final Association association;
 
-
-    public AssociationDetails(FloorService floorService, Association association) {
+    @Autowired
+    public AssociationDetails(FloorService floorService,Association association) {
         this.floorService = floorService;
         this.association = association;
     }
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         getTable();
         refreshData();
     }

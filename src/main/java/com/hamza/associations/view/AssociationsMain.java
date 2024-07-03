@@ -26,8 +26,11 @@ import static org.hamza.controlsfx.others.Utils.*;
 
 @Component
 public class AssociationsMain {
-    private final AssociationService associationService;
-    private final FloorService floorService;
+
+    @Autowired
+    private AssociationService associationService;
+    @Autowired
+    private FloorService floorService;
 
     @FXML
     private TableView<Association> tableView;
@@ -44,14 +47,8 @@ public class AssociationsMain {
     private Long association_id = 0L;
     private List<Floor> floorList = new ArrayList<>();
 
-    @Autowired
-    public AssociationsMain(AssociationService associationService, FloorService floorService) {
-        this.associationService = associationService;
-        this.floorService = floorService;
-    }
-
     @FXML
-    public void initialize() {
+    private void initialize() {
         getTable();
         otherSetting();
         getEndDate(0);
@@ -100,15 +97,15 @@ public class AssociationsMain {
         tableView.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getClickCount() == 2) {
                 try {
-                    new OpenDetails(floorService, tableView.getSelectionModel().getSelectedItem()).start(new Stage());
+                    new OpenDetails().start(new Stage());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             } else {
-                Stage stage = new Stage();
-                stage.setScene(new Scene(new DetailsByYear(associationService, floorService), 700, 400));
-                stage.setResizable(true);
-                stage.show();
+//                Stage stage = new Stage();
+//                stage.setScene(new Scene(new DetailsByYear(), 700, 400));
+//                stage.setResizable(true);
+//                stage.show();
             }
         });
 

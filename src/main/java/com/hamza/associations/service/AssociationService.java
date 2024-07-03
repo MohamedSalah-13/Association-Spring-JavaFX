@@ -16,7 +16,6 @@ public class AssociationService {
     @Autowired
     private AssociationRepository associations;
 
-
     public List<Association> findAllAssociations() {
         List<Association> all = associations.findAll();
         for (Association association : all) {

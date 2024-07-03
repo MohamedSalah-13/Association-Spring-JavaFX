@@ -2,7 +2,9 @@ package com.hamza.associations.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "association")
+@Component
 public class Association {
 
     @Id

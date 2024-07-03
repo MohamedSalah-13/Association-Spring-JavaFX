@@ -15,6 +15,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import org.hamza.controlsfx.table.Column;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,17 +25,18 @@ import java.util.List;
 
 import static org.hamza.controlsfx.table.Table_Setting.createColumn;
 
+//@Component
 public class DetailsByYear extends VBox {
 
     private TableView<Details> tableView;
     private Spinner<Integer> spinner;
 
-    private final AssociationService associationService;
-    private final FloorService floorService;
+//    @Autowired
+    private AssociationService associationService;
+//    @Autowired
+    private FloorService floorService;
 
-    public DetailsByYear(AssociationService associationService, FloorService floorService) {
-        this.associationService = associationService;
-        this.floorService = floorService;
+    public DetailsByYear() {
         tableView = new TableView<>();
         spinner = new Spinner<>();
         HBox hBox = new HBox(5);
@@ -95,14 +98,6 @@ public class DetailsByYear extends VBox {
                     plusMonth++;
                 }
             }
-
-            System.out.println(hashMap);
-            /*for (Floor value : floor) {
-                int numberFloor = value.getNumber_floor();
-                // get number by date
-
-                hashMap.put(numberFloor, value.getAmount() * countMonth);
-            }*/
 
             Details e = new Details(allAssociation.getName(), hashMap.get(1), hashMap.get(2), hashMap.get(3), hashMap.get(4), hashMap.get(5)
                     , hashMap.get(6), hashMap.get(7), hashMap.get(8), hashMap.get(9), hashMap.get(10), hashMap.get(11), hashMap.get(12), amount);

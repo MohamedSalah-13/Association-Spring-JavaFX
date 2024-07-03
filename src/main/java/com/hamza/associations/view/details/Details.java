@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Details {
+
     private StringProperty name = new SimpleStringProperty();
     private DoubleProperty jan = new SimpleDoubleProperty();
     private DoubleProperty feb = new SimpleDoubleProperty();
