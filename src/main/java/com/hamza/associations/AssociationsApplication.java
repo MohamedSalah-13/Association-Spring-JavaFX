@@ -19,8 +19,6 @@ import java.util.Random;
 public class AssociationsApplication implements CommandLineRunner {
 
     @Autowired
-    private FloorService floorService;
-    @Autowired
     private AssociationService associationService;
 
     public static void main(String[] args) {
@@ -41,12 +39,6 @@ public class AssociationsApplication implements CommandLineRunner {
         association.setFloor(floor);
         associationService.insert(association);
 
-
-        /*Optional<Association> associationById = associationService.findAssociationById(1L);
-        associationById.ifPresent(value -> {
-            List<Floor> allByAssociationId = floorService.findAllByAssociation_Id(value.getId());
-            allByAssociationId.forEach(System.out::println);
-        });*/
     }
 
     private void extracted(String name, int amount, int countMonth) {

@@ -1,14 +1,16 @@
-package com.hamza.associations.view.details;
+package com.hamza.associations.controller;
 
 import com.hamza.associations.entity.Association;
 import com.hamza.associations.entity.Floor;
 import com.hamza.associations.service.FloorService;
-import org.hamza.controlsfx.table.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
+import org.hamza.controlsfx.table.Column;
+import org.hamza.controlsfx.table.Table_Setting;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -18,21 +20,21 @@ import java.util.List;
 
 
 @Component
-public class AssociationDetails {
+public class DetailsController implements FxmlController {
 
     @FXML
     private TableView<Floor> tableView;
-    private final FloorService floorService;
-    private final Association association;
+    private FloorService floorService;
+    private Association association;
 
-    @Autowired
-    public AssociationDetails(FloorService floorService,Association association) {
+//    @Autowired
+    public DetailsController(FloorService floorService,Association association) {
         this.floorService = floorService;
         this.association = association;
     }
 
-    @FXML
-    private void initialize() {
+    @Override
+    public void initialize() {
         getTable();
         refreshData();
     }

@@ -1,37 +1,35 @@
-package com.hamza.associations.view;
+package com.hamza.associations.controller;
 
 import com.hamza.associations.entity.Association;
 import com.hamza.associations.entity.Floor;
 import com.hamza.associations.service.AssociationService;
 import com.hamza.associations.service.FloorService;
-import com.hamza.associations.view.details.DetailsByYear;
 import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import org.hamza.controlsfx.alert.AllAlerts;
 import org.hamza.controlsfx.table.Column;
 import org.hamza.controlsfx.table.Table_Setting;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
+
 import static org.hamza.controlsfx.others.DateConverter.dateConverter;
 import static org.hamza.controlsfx.others.Utils.*;
 
 @Component
-public class AssociationsMain {
+public class AssociationsMainController implements FxmlController {
 
-    @Autowired
-    private AssociationService associationService;
-    @Autowired
-    private FloorService floorService;
-
+    private final AssociationService associationService;
+    private final FloorService floorService;
     @FXML
     private TableView<Association> tableView;
     @FXML
@@ -47,8 +45,15 @@ public class AssociationsMain {
     private Long association_id = 0L;
     private List<Floor> floorList = new ArrayList<>();
 
-    @FXML
-    private void initialize() {
+
+    @Autowired
+    public AssociationsMainController(AssociationService associationService, FloorService floorService) {
+        this.associationService = associationService;
+        this.floorService = floorService;
+    }
+
+    @Override
+    public void initialize() {
         getTable();
         otherSetting();
         getEndDate(0);
@@ -97,15 +102,11 @@ public class AssociationsMain {
         tableView.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getClickCount() == 2) {
                 try {
-                    new OpenDetails().start(new Stage());
+
+//                    new OpenDetails(floorService, selectedItem).start(new Stage());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } else {
-//                Stage stage = new Stage();
-//                stage.setScene(new Scene(new DetailsByYear(), 700, 400));
-//                stage.setResizable(true);
-//                stage.show();
             }
         });
 
@@ -113,13 +114,13 @@ public class AssociationsMain {
     }
 
     private void addFloorNumbers() {
-        Floor_NumberWithFloor floorNumberWithFloor = new Floor_NumberWithFloor(spinnerCount.getValue(),
-                Double.parseDouble(field_amount.getText()), floorList);
-        Optional<List<Floor>> floors = floorNumberWithFloor.showAndWait();
-        floors.ifPresent(floors1 -> {
-            floorList = floors1;
-            setFloorText(floorList);
-        });
+//        try {
+//            AddFloor floorNumberWithFloor = new AddFloor(spinnerCount.getValue(),
+//                    Double.parseDouble(field_amount.getText()), floorList);
+//            floorNumberWithFloor.start(new Stage());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void deleteAssociation() {

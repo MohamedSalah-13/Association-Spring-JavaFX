@@ -1,4 +1,4 @@
-package com.hamza.associations.view.details;
+package com.hamza.associations.entity;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;

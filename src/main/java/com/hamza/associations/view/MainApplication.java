@@ -10,6 +10,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 public class MainApplication extends Application {
     private ConfigurableApplicationContext applicationContext;
+//    private StageManager stageManager;
 
     @Override
     public void init() {
@@ -19,7 +20,13 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) {
         applicationContext.publishEvent(new event(stage));
+
+//        stageManager = applicationContext.getBean(StageManager.class, stage);
+//        displayInitialScene();
     }
+//    protected void displayInitialScene() {
+//        stageManager.switchScene(FxmlView.MAIN);
+//    }
 
     @Override
     public void stop() {

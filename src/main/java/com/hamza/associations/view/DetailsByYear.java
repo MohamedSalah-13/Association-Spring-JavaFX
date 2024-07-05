@@ -1,9 +1,10 @@
-package com.hamza.associations.view.details;
+package com.hamza.associations.view;
 
 import com.hamza.associations.entity.Association;
 import com.hamza.associations.entity.Floor;
 import com.hamza.associations.service.AssociationService;
 import com.hamza.associations.service.FloorService;
+import com.hamza.associations.entity.Details;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -15,8 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import org.hamza.controlsfx.table.Column;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
